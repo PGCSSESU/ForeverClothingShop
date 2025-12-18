@@ -6,7 +6,7 @@ const connectDB = async () => {
             console.log("DB Connected to MongoDB Compass");
         });
 
-        await mongoose.connect("mongodb://localhost:27017/forever", {
+        await mongoose.connect("mongodb://localhost:27017/Happy", {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
