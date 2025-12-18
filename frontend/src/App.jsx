@@ -17,6 +17,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify'
 
+import MenCollection from "./pages/MenCollection";
+import WomenCollection from "./pages/WomenCollection";
+import KidsCollection from "./pages/KidsCollection";
+
 const App = () => {
   return (
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
@@ -35,6 +39,9 @@ const App = () => {
         <Route path='/orders' element={<Orders />} />
         <Route path='/verify' element={<Verify />} />
         <Route path='/explorejobs' element={<ExploreJobs />} />
+        <Route path="/collection/men" element={<MenCollection />} />
+        <Route path="/collection/women" element={<WomenCollection />} />
+        <Route path="/collection/kids" element={<KidsCollection />} />
       </Routes>
       <Footer />
     </div>

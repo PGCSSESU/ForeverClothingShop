@@ -76,10 +76,10 @@ const ExploreJobs = () => {
               <p className='text-gray-600 mt-4'>
                 Send your CV to this email:{' '}
                 <a
-                  href='mailto:rebelprem858@gmail.com'
+                  href='mailto:sesuuraj@gmail.com'
                   className='text-green-600 hover:underline'
                 >
-                  rebelprem858@gmail.com
+                  sesuuraj@gmail.com
                 </a>
                 . We will contact you soon.
               </p>
@@ -98,16 +98,16 @@ const ExploreJobs = () => {
         <p className='text-gray-600'>
           Have questions? Contact our HR team at{' '}
           <a
-            href='mailto:rebelprem858@gmail.com'
+            href='mailto:sesuuraj@gmail.com'
             className='text-green-600 hover:underline'
           >
-            rebelprem858@gmail.com
+            sesuuraj@gmail.com
           </a>
         </p>
         <p className='text-gray-600 mt-2'>
           Phone:{' '}
-          <a href='tel:7639644749' className='text-green-600 hover:underline'>
-            7639644749
+          <a href='tel:6385258142' className='text-green-600 hover:underline'>
+            6385258142
           </a>
         </p>
       </motion.div>

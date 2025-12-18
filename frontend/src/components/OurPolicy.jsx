@@ -1,55 +1,98 @@
-import React from 'react';
-import { assets } from '../assets/assets';
-import { motion } from 'framer-motion';
+import React from "react";
+import { assets } from "../assets/assets";
+import { motion } from "framer-motion";
+
+const policies = [
+  {
+    icon: assets.exchange_icon,
+    title: "Easy Exchange",
+    desc: "Hassle-free product exchange with a simple process.",
+  },
+  {
+    icon: assets.quality_icon,
+    title: "7-Day Returns",
+    desc: "Enjoy peace of mind with our easy return policy.",
+  },
+  {
+    icon: assets.support_img,
+    title: "24/7 Support",
+    desc: "Real humans, always available to help you.",
+  },
+];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.15,
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  }),
+};
 
 const OurPolicy = () => {
   return (
-    <motion.div
-      className='flex flex-col sm:flex-row justify-around gap-12 sm:gap-2 text-center py-20 bg-gray-100 rounded-xl p-6 shadow-lg'
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      <motion.div
-        className='bg-white rounded-lg shadow-md p-4 hover:shadow-xl hover:shadow-green-600/20 transition-all duration-300'
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        whileHover={{ y: -5 }}
-      >
-        <img src={assets.exchange_icon} className='w-12 m-auto mb-5' alt="" />
-        <p className='font-semibold text-gray-800 bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent'>
-          Easy Exchange Policy
-        </p>
-        <p className='text-gray-600'>We offer hassle free exchange policy</p>
-      </motion.div>
-      <motion.div
-        className='bg-white rounded-lg shadow-md p-4 hover:shadow-xl hover:shadow-green-600/20 transition-all duration-300'
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        whileHover={{ y: -5 }}
-      >
-        <img src={assets.quality_icon} className='w-12 m-auto mb-5' alt="" />
-        <p className='font-semibold text-gray-800 bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent'>
-          7 Days Return Policy
-        </p>
-        <p className='text-gray-600'>We provide 7 days free return policy</p>
-      </motion.div>
-      <motion.div
-        className='bg-white rounded-lg shadow-md p-4 hover:shadow-xl hover:shadow-green-600/20 transition-all duration-300'
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        whileHover={{ y: -5 }}
-      >
-        <img src={assets.support_img} className='w-12 m-auto mb-5' alt="" />
-        <p className='font-semibold text-gray-800 bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent'>
-          Best Customer Support
-        </p>
-        <p className='text-gray-600'>We provide 24/7 customer support</p>
-      </motion.div>
-    </motion.div>
+    <section className="relative my-28">
+      {/* Soft background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-white rounded-[3rem]" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20">
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+          {policies.map((item, i) => (
+            <motion.div
+              key={i}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={i}
+              whileHover={{ y: -12 }}
+              className="group relative rounded-[2rem]
+                         bg-white/80 backdrop-blur-xl
+                         border border-gray-200
+                         p-10 text-center
+                         shadow-[0_25px_60px_rgba(0,0,0,0.08)]
+                         transition-all duration-500"
+            >
+              {/* Glow */}
+              <div className="absolute inset-0 rounded-[2rem]
+                              bg-gradient-to-br from-emerald-200/30 to-transparent
+                              opacity-0 group-hover:opacity-100
+                              transition duration-500 pointer-events-none" />
+
+              {/* Icon */}
+              <div className="relative z-10 mb-6">
+                <div className="mx-auto w-16 h-16 rounded-2xl
+                                bg-gradient-to-br from-emerald-500 to-emerald-700
+                                flex items-center justify-center
+                                shadow-lg shadow-emerald-500/30">
+                  <img
+                    src={item.icon}
+                    alt={item.title}
+                    className="w-8 h-8 object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Text */}
+              <h3 className="relative z-10 text-xl font-semibold
+                             bg-gradient-to-r from-emerald-600 to-emerald-800
+                             bg-clip-text text-transparent mb-3">
+                {item.title}
+              </h3>
+
+              <p className="relative z-10 text-gray-600 leading-relaxed">
+                {item.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

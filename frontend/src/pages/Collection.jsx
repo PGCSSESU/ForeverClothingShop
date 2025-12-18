@@ -1,224 +1,324 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { ShopContext } from '../context/ShopContext';
-import { assets } from '../assets/assets';
-import Title from '../components/Title';
-import ProductItem from '../components/ProductItem';
-import { motion } from 'framer-motion';
+import React, {
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ShopContext } from "../context/ShopContext";
+import Title from "../components/Title";
+import ProductItem from "../components/ProductItem";
+import { SlidersHorizontal } from "lucide-react";
 
+/* ======================================================
+   MOTION SYSTEM – CALM & LUXURY
+====================================================== */
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const stagger = {
+  show: {
+    transition: { staggerChildren: 0.08 },
+  },
+};
+
+/* ======================================================
+   COLLECTION PAGE
+====================================================== */
 const Collection = () => {
-  const { products, search, showSearch } = useContext(ShopContext);
-  const [showFilter, setShowFilter] = useState(false);
-  const [filterProducts, setFilterProducts] = useState([]);
+  const { products, search, showSearch } =
+    useContext(ShopContext);
+
+  /* ---------------- STATE ---------------- */
+  const [showFilter, setShowFilter] = useState(true);
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
-  const [sortType, setSortType] = useState('relavent');
+  const [sortType, setSortType] = useState("relevant");
+  const [filteredProducts, setFilteredProducts] =
+    useState([]);
 
-  const toggleCategory = (e) => {
-    const value = e.target.value;
+  /* ---------------- TOGGLES ---------------- */
+  const toggleCategory = (value) => {
     setCategory((prev) =>
-      prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value]
+      prev.includes(value)
+        ? prev.filter((c) => c !== value)
+        : [...prev, value]
     );
   };
 
-  const toggleSubCategory = (e) => {
-    const value = e.target.value;
+  const toggleSubCategory = (value) => {
     setSubCategory((prev) =>
-      prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value]
+      prev.includes(value)
+        ? prev.filter((s) => s !== value)
+        : [...prev, value]
     );
   };
 
-  const applyFilter = () => {
-    let productsCopy = products.slice();
+  /* ---------------- FILTER LOGIC ---------------- */
+  const computedProducts = useMemo(() => {
+    let data = [...products];
 
     if (showSearch && search) {
-      productsCopy = productsCopy.filter((item) =>
-        item.name.toLowerCase().includes(search.toLowerCase())
+      data = data.filter((p) =>
+        p.name
+          .toLowerCase()
+          .includes(search.toLowerCase())
       );
     }
 
-    if (category.length > 0) {
-      productsCopy = productsCopy.filter((item) => category.includes(item.category));
+    if (category.length) {
+      data = data.filter((p) =>
+        category.includes(p.category)
+      );
     }
 
-    if (subCategory.length > 0) {
-      productsCopy = productsCopy.filter((item) => subCategory.includes(item.subCategory));
+    if (subCategory.length) {
+      data = data.filter((p) =>
+        subCategory.includes(p.subCategory)
+      );
     }
-
-    setFilterProducts(productsCopy);
-  };
-
-  const sortProduct = () => {
-    let fpCopy = filterProducts.slice();
 
     switch (sortType) {
-      case 'low-high':
-        setFilterProducts(fpCopy.sort((a, b) => a.price - b.price));
+      case "low-high":
+        data.sort((a, b) => a.price - b.price);
         break;
-      case 'high-low':
-        setFilterProducts(fpCopy.sort((a, b) => b.price - a.price));
+      case "high-low":
+        data.sort((a, b) => b.price - a.price);
         break;
       default:
-        applyFilter();
         break;
     }
-  };
+
+    return data;
+  }, [
+    products,
+    search,
+    showSearch,
+    category,
+    subCategory,
+    sortType,
+  ]);
 
   useEffect(() => {
-    applyFilter();
-  }, [category, subCategory, search, showSearch, products]);
+    setFilteredProducts(computedProducts);
+  }, [computedProducts]);
 
-  useEffect(() => {
-    sortProduct();
-  }, [sortType]);
-
+  /* ======================================================
+     RENDER
+  ====================================================== */
   return (
-    <motion.div
-      className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 bg-gray-100 rounded-xl p-6 shadow-lg border-t'
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      {/* Filter Options */}
-      <motion.div
-        className='min-w-60'
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <p
-          onClick={() => setShowFilter(!showFilter)}
-          className='my-2 text-xl flex items-center cursor-pointer gap-2 text-gray-800'
-        >
-          FILTERS
-          <img
-            className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''} transition-transform duration-300`}
-            src={assets.dropdown_icon}
-            alt=""
-          />
-        </p>
-        {/* Category Filter */}
-        <div
-          className={`border border-gray-300 pl-5 py-3 mt-6 bg-white rounded-lg shadow-md ${
-            showFilter ? '' : 'hidden'
-          } sm:block`}
-        >
-          <p className='mb-3 text-sm font-medium text-gray-700'>CATEGORIES</p>
-          <div className='flex flex-col gap-2 text-sm font-light text-gray-600'>
-            <label className='flex gap-2 items-center'>
-              <input
-                className='w-3 accent-green-600'
-                type='checkbox'
-                value={'Men'}
-                onChange={toggleCategory}
-              />{' '}
-              Men
-            </label>
-            <label className='flex gap-2 items-center'>
-              <input
-                className='w-3 accent-green-600'
-                type='checkbox'
-                value={'Women'}
-                onChange={toggleCategory}
-              />{' '}
-              Women
-            </label>
-            <label className='flex gap-2 items-center'>
-              <input
-                className='w-3 accent-green-600'
-                type='checkbox'
-                value={'Kids'}
-                onChange={toggleCategory}
-              />{' '}
-              Kids
-            </label>
-          </div>
-        </div>
-        {/* SubCategory Filter */}
-        <div
-          className={`border border-gray-300 pl-5 py-3 my-5 bg-white rounded-lg shadow-md ${
-            showFilter ? '' : 'hidden'
-          } sm:block`}
-        >
-          <p className='mb-3 text-sm font-medium text-gray-700'>TYPE</p>
-          <div className='flex flex-col gap-2 text-sm font-light text-gray-600'>
-            <label className='flex gap-2 items-center'>
-              <input
-                className='w-3 accent-green-600'
-                type='checkbox'
-                value={'Topwear'}
-                onChange={toggleSubCategory}
-              />{' '}
-              Topwear
-            </label>
-            <label className='flex gap-2 items-center'>
-              <input
-                className='w-3 accent-green-600'
-                type='checkbox'
-                value={'Bottomwear'}
-                onChange={toggleSubCategory}
-              />{' '}
-              Bottomwear
-            </label>
-            <label className='flex gap-2 items-center'>
-              <input
-                className='w-3 accent-green-600'
-                type='checkbox'
-                value={'Winterwear'}
-                onChange={toggleSubCategory}
-              />{' '}
-              Winterwear
-            </label>
-          </div>
-        </div>
-      </motion.div>
+    <section className="relative bg-white">
+      {/* AMBIENT BACKGROUND */}
+      <div className="absolute -top-40 -left-40 w-[700px] h-[700px] bg-emerald-200/20 blur-[220px]" />
+      <div className="absolute bottom-0 -right-40 w-[700px] h-[700px] bg-emerald-300/20 blur-[260px]" />
 
-      {/* Right Side */}
-      <motion.div
-        className='flex-1'
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className='flex justify-between text-base sm:text-2xl mb-6'>
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-24">
+        {/* HEADER */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="mb-20 text-center"
+        >
           <Title
-            text1={'ALL'}
-            text2={'COLLECTIONS'}
-            className='text-gray-800 bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent'
+            text1="ALL"
+            text2="COLLECTIONS"
+            className="text-4xl md:text-5xl font-extrabold
+                       bg-gradient-to-r from-emerald-600 to-emerald-800
+                       bg-clip-text text-transparent"
           />
-          <div className='w-24 h-1 bg-gradient-to-r from-green-600 to-green-400 mt-2 rounded-full sm:hidden'></div>
-          {/* Product Sort */}
-          <select
-            onChange={(e) => setSortType(e.target.value)}
-            className='border-2 border-gray-300 text-sm px-2 py-1 rounded-md bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400'
-          >
-            <option value='relavent'>Sort by: Relevant</option>
-            <option value='low-high'>Sort by: Low to High</option>
-            <option value='high-low'>Sort by: High to Low</option>
-          </select>
-        </div>
+          <p className="mt-6 text-gray-600 max-w-2xl mx-auto text-lg">
+            Elevated essentials and statement pieces —
+            designed to move with you.
+          </p>
+        </motion.div>
 
-        {/* Map Products */}
-        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6'>
-          {filterProducts.map((item, index) => (
+        {/* MAIN LAYOUT */}
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-20">
+          {/* FILTER SIDEBAR */}
+          <aside>
+            <div className="lg:hidden mb-6">
+              <button
+                onClick={() =>
+                  setShowFilter(!showFilter)
+                }
+                className="flex items-center gap-2
+                           px-5 py-3 rounded-full
+                           border border-gray-300
+                           text-sm font-medium"
+              >
+                <SlidersHorizontal size={16} />
+                Filters
+              </button>
+            </div>
+
+            <AnimatePresence>
+              {showFilter && (
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.4 }}
+                  className="sticky top-28
+                             rounded-[2rem]
+                             bg-white/80 backdrop-blur-xl
+                             border border-gray-200
+                             shadow-[0_25px_70px_rgba(0,0,0,0.08)]
+                             p-10 space-y-12"
+                >
+                  {/* CATEGORY */}
+                  <div>
+                    <p className="text-sm font-semibold tracking-wide mb-5">
+                      CATEGORY
+                    </p>
+                    <div className="space-y-4 text-gray-600">
+                      {["Men", "Women", "Kids"].map(
+                        (c) => (
+                          <label
+                            key={c}
+                            className="flex items-center gap-3 cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              checked={category.includes(
+                                c
+                              )}
+                              onChange={() =>
+                                toggleCategory(c)
+                              }
+                              className="accent-emerald-600"
+                            />
+                            {c}
+                          </label>
+                        )
+                      )}
+                    </div>
+                  </div>
+
+                  {/* TYPE */}
+                  <div>
+                    <p className="text-sm font-semibold tracking-wide mb-5">
+                      TYPE
+                    </p>
+                    <div className="space-y-4 text-gray-600">
+                      {[
+                        "Topwear",
+                        "Bottomwear",
+                        "Winterwear",
+                      ].map((s) => (
+                        <label
+                          key={s}
+                          className="flex items-center gap-3 cursor-pointer"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={subCategory.includes(
+                              s
+                            )}
+                            onChange={() =>
+                              toggleSubCategory(s)
+                            }
+                            className="accent-emerald-600"
+                          />
+                          {s}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </aside>
+
+          {/* PRODUCT AREA */}
+          <div>
+            {/* SORT BAR */}
+            <div className="flex justify-between items-center mb-14">
+              <p className="text-sm text-gray-500">
+                {filteredProducts.length} results
+              </p>
+
+              <select
+                value={sortType}
+                onChange={(e) =>
+                  setSortType(e.target.value)
+                }
+                className="px-5 py-3 rounded-full
+                           border border-gray-300
+                           text-sm bg-white
+                           focus:ring-2 focus:ring-emerald-400"
+              >
+                <option value="relevant">
+                  Sort: Relevant
+                </option>
+                <option value="low-high">
+                  Price: Low → High
+                </option>
+                <option value="high-low">
+                  Price: High → Low
+                </option>
+              </select>
+            </div>
+
+            {/* BIG PRODUCT GRID */}
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
+              variants={stagger}
+              initial="hidden"
+              animate="show"
+              className="
+                grid
+                grid-cols-1
+                sm:grid-cols-2
+                xl:grid-cols-3
+                gap-x-12
+                gap-y-20
+              "
             >
-              <ProductItem
-                name={item.name}
-                id={item._id}
-                price={item.price}
-                image={item.image}
-                className='bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:shadow-green-600/20 transition-all duration-300'
-              />
+              {filteredProducts.map((item) => (
+                <motion.div
+                  key={item._id}
+                  variants={fadeUp}
+                  whileHover={{ y: -8 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 200,
+                    damping: 20,
+                  }}
+                >
+                  <ProductItem
+                    id={item._id}
+                    name={item.name}
+                    price={item.price}
+                    image={item.image}
+                    className="
+                      rounded-[2rem]
+                      overflow-hidden
+                      bg-white
+                      shadow-[0_20px_60px_rgba(0,0,0,0.08)]
+                      hover:shadow-[0_30px_90px_rgba(16,185,129,0.25)]
+                      transition
+                    "
+                  />
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
+
+            {/* EMPTY STATE */}
+            {filteredProducts.length === 0 && (
+              <div className="py-32 text-center text-gray-500">
+                No products match your filters.
+              </div>
+            )}
+          </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </section>
   );
 };
 

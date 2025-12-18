@@ -1,180 +1,120 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
+/* ASSETS */
 import model from "../assets/image2.png";
 import model1 from "../assets/image3.png";
-import model4 from "../assets/imageb2.png";
 import model2 from "../assets/image5.png";
 import model3 from "../assets/imageb.png";
+import model4 from "../assets/imageb2.png";
+
+/* SLIDES */
+const slides = [
+  { title: "Vivid Future", subtitle: "Designed for tomorrow", image: model1 },
+  { title: "Radiant Allure", subtitle: "Timeless fashion", image: model },
+  { title: "Bold Uniqueness", subtitle: "Stand out in style", image: model2 },
+  { title: "Pure Opulence", subtitle: "Luxury redefined", image: model4 },
+  { title: "Flawless Craft", subtitle: "Precision in every detail", image: model3 },
+];
+
+/* MOTION */
+const fadeText = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+  exit: { opacity: 0, y: -10, transition: { duration: 0.4 } },
+};
+
 const Hero = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const carouselImages = [model1, model, model2 , model4,model3];
-
-  // Slide content with titles and descriptions
-  const slideContent = [
-    {
-      title: "Radiant Allure",
-      description: "Glow with timeless style →",
-      titleColor: "from-green-500 via-teal-500 to-cyan-500",
-    },
-    {
-      title: "Flawless Craft",
-      description: "Precision in every detail →",
-      titleColor: "from-blue-500 via-indigo-500 to-purple-500",
-    },
-    {
-      title: "Bold Uniqueness",
-      description: "Stand out, claim yours →",
-      titleColor: "from-purple-500 via-pink-500 to-red-500",
-    },
-    {
-      title: "Vivid Future",
-      description: "Stunning designs await →",
-      titleColor: "from-yellow-500 via-orange-500 to-red-500",
-    },
-    {
-      title: "Pure Opulence",
-      description: "Luxe vibes elevate you →",
-      titleColor: "from-gray-500 via-gray-300 to-white",
-    },
-  ];
+  const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
+  const timer = useRef(null);
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 500);
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % slideContent.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
+    timer.current = setInterval(() => {
+      setIndex((prev) => (prev + 1) % slides.length);
+    }, 6500);
+    return () => clearInterval(timer.current);
   }, []);
 
-  // Image animation variants
-  const imageVariants = {
-    hidden: { opacity: 0, x: "50%", scale: 0.95 },
-    visible: {
-      opacity: 1,
-      x: "0%",
-      scale: 1,
-      transition: { duration: 1, ease: "easeInOut" },
-    },
-    exit: {
-      opacity: 0,
-      x: "-50%",
-      scale: 0.95,
-      transition: { duration: 1, ease: "easeInOut" },
-    },
-  };
-
-  // Text animation variants with innovative effects
-  const textVariants = {
-    hidden: { opacity: 0, y: 30, rotate: -5 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      rotate: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-    exit: {
-      opacity: 0,
-      y: -20,
-      rotate: 5,
-      transition: { duration: 0.5, ease: "easeIn" },
-    },
-  };
-
   return (
-    <div className="relative w-full h-[400px] sm:h-[500px]">
-      {/* Loading Screen */}
-      <AnimatePresence>
-        {isLoading && (
-          <motion.div
-            className="fixed inset-0 bg-gray-900 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 0.5 } }}
+    <section className="relative w-full h-[120vh] overflow-hidden bg-white">
+      {/* SOFT EMERALD AMBIENCE */}
+      <div className="absolute -top-64 -left-64 w-[700px] h-[700px] bg-emerald-300/20 blur-[220px]" />
+      <div className="absolute bottom-0 -right-64 w-[700px] h-[700px] bg-emerald-400/15 blur-[240px]" />
+
+      {/* IMAGE STACK */}
+      <div className="absolute inset-0">
+        {slides.map((slide, i) => (
+          <motion.img
+            key={i}
+            src={slide.image}
+            alt={slide.title}
+            className="absolute inset-0 w-full h-full object-cover"
+            animate={{ opacity: i === index ? 1 : 0 }}
+            transition={{ duration: 1.4, ease: "easeInOut" }}
+          />
+        ))}
+      </div>
+
+      {/* VERY LIGHT VIGNETTE (NOT DARK) */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10" />
+
+      {/* CONTENT – EDGE CAPTION */}
+      <div className="relative z-10 h-full flex items-end pb-20">
+        <div className="pl-10 md:pl-20 max-w-md">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              variants={fadeText}
+              initial="hidden"
+              animate="show"
+              exit="exit"
+            >
+              <p className="uppercase tracking-[0.3em] text-sm text-white/60 mb-3">
+                Featured Collection
+              </p>
+
+              <h1 className="text-4xl md:text-5xl font-semibold text-white leading-tight">
+                {slides[index].title}
+              </h1>
+
+              <p className="mt-3 text-white/70">
+                {slides[index].subtitle}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+
+          <motion.button
+            whileHover={{ x: 4 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={() => {
+              navigate("/collection");
+              window.scrollTo(0, 0);
+            }}
+            className="mt-8 inline-flex items-center gap-3
+                       text-white font-medium
+                       border-b border-white/50
+                       pb-1 hover:border-white transition"
           >
-            <motion.div
-              className="text-green-400 text-xl font-semibold"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-            >
-              ⌀
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <motion.div
-        className="flex flex-col sm:flex-row w-full h-full bg-gradient-to-br from-gray-900 via-black to-gray-800 border border-gray-800 rounded-xl overflow-hidden shadow-2xl"
-        initial="hidden"
-        animate={!isLoading ? "visible" : "hidden"}
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.3 }}
-      >
-        {/* Left Side - Dynamic Text */}
-        <div className="w-full sm:w-1/2 flex items-center justify-center p-8 bg-opacity-80">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
-              className="text-white"
-              variants={textVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            >
-              <motion.h1
-                className={`text-2xl sm:text-4xl font-bold bg-gradient-to-r ${slideContent[currentIndex].titleColor} bg-clip-text text-transparent`}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                {slideContent[currentIndex].title}
-              </motion.h1>
-              <motion.p
-                className="mt-3 text-sm sm:text-base font-medium text-gray-300"
-                whileHover={{ x: 10, color: "#34D399" }}
-                transition={{ duration: 0.3 }}
-              >
-                {slideContent[currentIndex].description}
-              </motion.p>
-            </motion.div>
-          </AnimatePresence>
+            Explore Collection
+            <ArrowRight size={18} />
+          </motion.button>
         </div>
+      </div>
 
-        {/* Right Side - Carousel */}
-        <div className="w-full sm:w-1/2 relative overflow-hidden h-full">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={currentIndex}
-              className="absolute top-0 left-0 w-full h-full object-cover rounded-r-xl"
-              src={carouselImages[currentIndex % carouselImages.length]}
-              alt={`Hero Image ${currentIndex + 1}`}
-              variants={imageVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              whileHover={{ scale: 1.05 }}
-            />
-          </AnimatePresence>
-
-          {/* Navigation Dots */}
-          <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
-            {slideContent.map((_, index) => (
-              <motion.div
-                key={index}
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full cursor-pointer ${
-                  currentIndex === index ? "bg-green-400" : "bg-gray-600"
-                }`}
-                whileHover={{ scale: 1.8, backgroundColor: "#34D399" }}
-                onClick={() => setCurrentIndex(index)}
-                transition={{ duration: 0.2 }}
-              />
-            ))}
-          </div>
-        </div>
-      </motion.div>
-    </div>
+      {/* PROGRESS BAR */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[240px] h-[2px] bg-white/30 overflow-hidden">
+        <motion.div
+          key={index}
+          initial={{ width: "0%" }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 6.5, ease: "linear" }}
+          className="h-full bg-emerald-400"
+        />
+      </div>
+    </section>
   );
 };
 

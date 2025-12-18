@@ -1,227 +1,348 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { ShopContext } from '../context/ShopContext';
-import { toast } from 'react-toastify';
-import { motion, AnimatePresence } from 'framer-motion';
-import 'react-toastify/dist/ReactToastify.css';
-import RelatedProducts from '../components/RelatedProducts';
+import React, {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { useParams } from "react-router-dom";
+import { ShopContext } from "../context/ShopContext";
+import { toast } from "react-toastify";
+import { motion, AnimatePresence } from "framer-motion";
+import RelatedProducts from "../components/RelatedProducts";
 
+/* ======================================================
+   MOTION SYSTEM — CALM & LUXURY
+====================================================== */
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const stagger = {
+  show: { transition: { staggerChildren: 0.08 } },
+};
+
+/* ======================================================
+   THUMBNAIL CONFIG
+====================================================== */
+const THUMB_SIZE = 88;
+const THUMB_GAP = 16;
+const STEP = THUMB_SIZE + THUMB_GAP;
+const AUTO_DELAY = 2400;
+
+/* ======================================================
+   PRODUCT PAGE
+====================================================== */
 const Product = () => {
   const { productId } = useParams();
   const { products, addToCart } = useContext(ShopContext);
-  const [productData, setProductData] = useState(null);
-  const [image, setImage] = useState('');
-  const [size, setSize] = useState('');
-  const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
-  const [isZooming, setIsZooming] = useState(false);
 
+  /* ---------------- CORE STATE ---------------- */
+  const [product, setProduct] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedSize, setSelectedSize] = useState("");
+
+  /* ---------------- AUTO SLIDE STATE ---------------- */
+  const [paused, setPaused] = useState(false);
+  const autoTimerRef = useRef(null);
+
+  /* ---------------- LENS ZOOM ---------------- */
+  const [lens, setLens] = useState({
+    x: 0,
+    y: 0,
+    show: false,
+  });
+
+  /* ======================================================
+     FETCH PRODUCT
+  ====================================================== */
   useEffect(() => {
-    const selectedProduct = products.find((item) => item._id === productId);
-    if (selectedProduct) {
-      setProductData(selectedProduct);
-      setImage(selectedProduct.image[0]);
+    const found = products.find(
+      (p) => p._id === productId
+    );
+    if (found) {
+      setProduct(found);
+      setActiveIndex(0);
+      setSelectedSize("");
     }
   }, [productId, products]);
 
+  /* ======================================================
+     AUTO SLIDING THUMBNAILS
+     (SINGLE SOURCE OF TRUTH)
+  ====================================================== */
+  useEffect(() => {
+    if (!product || paused) return;
+
+    autoTimerRef.current = setInterval(() => {
+      setActiveIndex((prev) =>
+        (prev + 1) % product.image.length
+      );
+    }, AUTO_DELAY);
+
+    return () =>
+      clearInterval(autoTimerRef.current);
+  }, [product, paused]);
+
+  /* ======================================================
+     ADD TO CART
+  ====================================================== */
   const handleAddToCart = () => {
-    if (!size) {
-      toast.error("Please select a size!", { position: "top-right" });
+    if (!selectedSize) {
+      toast.error("Please select a size");
       return;
     }
-    addToCart(productData._id, size);
-    toast.success(`${productData.name} added to cart!`, { position: "top-right" });
+    addToCart(product._id, selectedSize);
+    toast.success("Added to cart");
   };
 
-  // Handle mouse movement for zoom effect
-  const handleMouseMove = (e) => {
-    const { left, top, width, height } = e.target.getBoundingClientRect();
-    const x = e.clientX - left;
-    const y = e.clientY - top;
-
-    // Calculate background position for zoom container
-    const zoomLevel = 2.5;
-    const bgX = -(x * zoomLevel - 200); // 200 is half of zoom container width
-    const bgY = -(y * zoomLevel - 200); // 200 is half of zoom container height
-
-    setZoomPosition({ bgX, bgY });
-    setIsZooming(true);
+  /* ======================================================
+     LENS ZOOM (SUBTLE)
+  ====================================================== */
+  const handleLensMove = (e) => {
+    const rect =
+      e.currentTarget.getBoundingClientRect();
+    const x =
+      ((e.clientX - rect.left) / rect.width) *
+      100;
+    const y =
+      ((e.clientY - rect.top) / rect.height) *
+      100;
+    setLens({ x, y, show: true });
   };
 
-  const handleMouseLeave = () => {
-    setIsZooming(false);
-  };
+  const handleLensLeave = () =>
+    setLens((p) => ({ ...p, show: false }));
 
-  if (!productData) return null;
+  if (!product) return null;
 
-  // Text animation variants
-  const textVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-  };
+  const images = product.image;
 
+  /* ======================================================
+     RENDER
+  ====================================================== */
   return (
-    <motion.div
-      className="border-t-2 pt-10 px-6 md:px-20 bg-gradient-to-br from-gray-50 to-gray-100"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      {/* Product Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Image Section */}
-        <motion.div className="flex flex-col gap-4" initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={image}
-              className="w-[80%] max-w-[500px] mx-auto rounded-lg shadow-md object-cover cursor-zoom-in"
-              src={image}
-              alt={productData.name}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.4 }}
-              whileHover={{ boxShadow: "0 0 15px rgba(0,0,0,0.3)" }}
-            />
-          </AnimatePresence>
+    <section className="relative bg-white overflow-hidden">
+      {/* ==================================================
+         AMBIENT BACKGROUND
+      ================================================== */}
+      <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-emerald-200/20 blur-[220px]" />
+      <div className="absolute bottom-0 -right-40 w-[600px] h-[600px] bg-emerald-300/20 blur-[260px]" />
 
-          {/* Thumbnail Images */}
-          <div className="flex gap-3 justify-center mt-4">
-            {productData.image.map((img, index) => (
-              <motion.img
-                key={index}
-                onClick={() => setImage(img)}
-                src={img}
-                className={`w-12 h-12 border rounded-lg cursor-pointer transition-all duration-300 ${
-                  image === img
-                    ? 'border-green-500 shadow-[0_0_10px_rgba(0,0,0,0.5)]'
-                    : 'hover:shadow-[0_0_8px_rgba(0,0,0,0.3)]'
-                }`}
-                whileHover={{ scale: 1.1, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                alt=""
-              />
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Details Section with Zoom Container */}
-        <div className="relative">
-          {/* Zoom Container (Over Text) */}
-          <AnimatePresence>
-            {isZooming && (
-              <motion.div
-                className="absolute top-0 left-0 w-[400px] h-[400px] bg-white rounded-lg shadow-xl overflow-hidden z-10 pointer-events-none"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  backgroundImage: `url(${image})`,
-                  backgroundSize: `${1000}px ${1000}px`, // 2.5x the container size
-                  backgroundPosition: `${zoomPosition.bgX}px ${zoomPosition.bgY}px`,
-                  backgroundRepeat: 'no-repeat', // Prevent repetition
-                }}
-              />
-            )}
-          </AnimatePresence>
-
-          {/* Product Details */}
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          {/* ==================================================
+             IMAGE + THUMB STRIP (STICKY)
+          ================================================== */}
           <motion.div
-            className="relative z-0"
-            variants={textVariants}
-            animate={isZooming ? "hidden" : "visible"}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="sticky top-28 h-fit"
           >
+            {/* ---------------- MAIN IMAGE ---------------- */}
+            <div
+              className="relative rounded-[2rem]
+                         overflow-hidden
+                         shadow-[0_30px_90px_rgba(0,0,0,0.15)]"
+              onMouseMove={handleLensMove}
+              onMouseLeave={handleLensLeave}
+            >
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={images[activeIndex]}
+                  src={images[activeIndex]}
+                  alt={product.name}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="w-full h-[520px] object-cover"
+                />
+              </AnimatePresence>
+
+              {/* ---------------- LENS ZOOM ---------------- */}
+              {lens.show && (
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    backgroundImage: `url(${images[activeIndex]})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "180%",
+                    backgroundPosition: `${lens.x}% ${lens.y}%`,
+                  }}
+                />
+              )}
+            </div>
+
+            {/* ==================================================
+               AUTO SLIDING 3D THUMBNAILS
+            ================================================== */}
+            <div
+              className="relative mt-10 overflow-hidden"
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+              style={{ perspective: "1200px" }}
+            >
+              <motion.div
+                className="flex gap-4"
+                animate={{
+                  x: `-${activeIndex * STEP}px`,
+                }}
+                transition={{
+                  duration: 0.9,
+                  ease: "easeInOut",
+                }}
+              >
+                {images.map((img, i) => {
+                  const isActive = i === activeIndex;
+
+                  return (
+                    <motion.button
+                      key={i}
+                      onClick={() =>
+                        setActiveIndex(i)
+                      }
+                      className="relative flex-shrink-0
+                                 w-[88px] h-[88px]
+                                 rounded-xl overflow-hidden
+                                 border border-gray-200
+                                 bg-white"
+                      animate={{
+                        rotateY: isActive ? 0 : -18,
+                        scale: isActive ? 1.12 : 0.9,
+                        z: isActive ? 60 : 0,
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        ease: "easeOut",
+                      }}
+                      style={{
+                        transformStyle: "preserve-3d",
+                      }}
+                    >
+                      <img
+                        src={img}
+                        alt=""
+                        className="w-full h-full object-cover"
+                      />
+
+                      {isActive && (
+                        <div className="absolute inset-0 ring-2 ring-emerald-500 rounded-xl" />
+                      )}
+                    </motion.button>
+                  );
+                })}
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* ==================================================
+             PRODUCT DETAILS
+          ================================================== */}
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            animate="show"
+          >
+            {/* TITLE */}
             <motion.h1
-              className="text-3xl font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.3 }}
+              variants={fadeUp}
+              className="text-4xl md:text-5xl font-semibold"
             >
-              {productData.name}
+              {product.name}
             </motion.h1>
+
+            {/* PRICE */}
             <motion.p
-              className="text-lg text-gray-500 mt-2"
-              whileHover={{ color: "#4B5563" }}
-              transition={{ duration: 0.2 }}
+              variants={fadeUp}
+              className="mt-4 text-3xl font-bold text-emerald-600"
             >
-              {productData.description}
-            </motion.p>
-            <motion.p
-              className="text-3xl font-bold mt-4 text-green-600"
-              whileHover={{ x: 10 }}
-              transition={{ duration: 0.3 }}
-            >
-              ₹{productData.price}
+              ₹{product.price}
             </motion.p>
 
-            {/* Size Selection */}
-            <div className="mt-6">
-              <p className="font-semibold text-gray-800">Select Size</p>
-              <div className="flex gap-3 mt-2">
-                {productData.sizes.map((item, index) => (
+            {/* DESCRIPTION */}
+            <motion.p
+              variants={fadeUp}
+              className="mt-6 text-gray-600 leading-relaxed max-w-xl"
+            >
+              {product.description}
+            </motion.p>
+
+            {/* SIZE SELECT */}
+            <motion.div
+              variants={fadeUp}
+              className="mt-10"
+            >
+              <p className="font-semibold mb-4">
+                Select Size
+              </p>
+              <div className="flex gap-4 flex-wrap">
+                {product.sizes.map((s) => (
                   <motion.button
-                    key={index}
-                    onClick={() => setSize(item)}
-                    className={`border px-5 py-2 rounded-md shadow-md ${
-                      size === item ? 'bg-green-600 text-white' : 'bg-gray-100 hover:bg-gray-200'
+                    key={s}
+                    onClick={() =>
+                      setSelectedSize(s)
+                    }
+                    whileHover={{ y: -4 }}
+                    className={`px-6 py-3 rounded-xl border transition ${
+                      selectedSize === s
+                        ? "bg-emerald-600 text-white border-emerald-600"
+                        : "border-gray-300 hover:border-emerald-500"
                     }`}
-                    whileHover={{ scale: 1.1, boxShadow: "0 0 10px rgba(0,0,0,0.2)" }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
                   >
-                    {item}
+                    {s}
                   </motion.button>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            {/* Add to Cart Button */}
+            {/* ADD TO CART */}
             <motion.button
+              variants={fadeUp}
               onClick={handleAddToCart}
-              className="w-full bg-green-600 hover:bg-green-700 text-white py-3 mt-6 text-lg font-semibold rounded-md shadow-lg"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(0,0,0,0.3)" }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.3 }}
+              whileHover={{ y: -3 }}
+              className="mt-12 w-full md:w-[320px]
+                         bg-emerald-600 hover:bg-emerald-700
+                         text-white py-4 rounded-full
+                         text-lg font-semibold
+                         shadow-[0_20px_60px_rgba(16,185,129,0.45)]"
             >
-              ADD TO CART
+              Add to Cart
             </motion.button>
 
-            {/* Additional Info */}
-            <motion.div className="mt-8 text-sm text-gray-600 flex flex-col gap-2">
-              {['✅ 100% Original product.', '✅ Cash on delivery is available.', '✅ Easy return & exchange within 7 days.'].map(
-                (text, index) => (
-                  <motion.p
-                    key={index}
-                    whileHover={{ x: 5, color: "#10B981" }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {text}
-                  </motion.p>
-                )
-              )}
-            </motion.div>
+            {/* TRUST POINTS */}
+            <motion.ul
+              variants={fadeUp}
+              className="mt-10 space-y-3 text-sm text-gray-600"
+            >
+              <li>✔ 100% Original product</li>
+              <li>✔ 7-day easy returns</li>
+              <li>✔ Cash on delivery available</li>
+            </motion.ul>
           </motion.div>
         </div>
-      </div>
 
-      {/* Related Products Section */}
-      <motion.div
-        className="mt-16"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <motion.h2
-          className="text-2xl font-semibold bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent text-center"
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.3 }}
+        {/* ==================================================
+           RELATED PRODUCTS
+        ================================================== */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mt-32"
         >
-          Similar Products
-        </motion.h2>
-        <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
-      </motion.div>
-    </motion.div>
+          <RelatedProducts
+            category={product.category}
+            subCategory={product.subCategory}
+          />
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

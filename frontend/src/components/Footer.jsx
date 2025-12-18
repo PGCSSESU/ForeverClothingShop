@@ -1,63 +1,97 @@
 import React from "react";
 import { assets } from "../assets/assets";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="py-16 text-gray-300">
-      <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 text-sm">
-        
-        {/* Logo & Description */}
+    <footer className="relative bg-white mt-32 overflow-hidden">
+
+      {/* Soft Ambient Background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute -top-32 right-1/4 w-96 h-96 bg-emerald-200/30 rounded-full blur-[140px]" />
+        <div className="absolute -bottom-32 left-1/4 w-96 h-96 bg-cyan-200/30 rounded-full blur-[140px]" />
+      </div>
+
+      {/* Top Accent Line */}
+      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-emerald-400 to-transparent" />
+
+      {/* Content */}
+      <div className="max-w-7xl mx-auto px-6 py-20 grid gap-14 md:grid-cols-[2fr_1fr_1fr]">
+
+        {/* BRAND */}
         <div>
-          <img 
-            src={assets.logo} 
-            className="mb-5 w-32 brightness-200 contrast-125" 
-            alt="Forever Logo" 
-          />
-      <p className="w-full md:w-2/3 text-[#064635] leading-relaxed">
-  Step into the world of <span className="text-[green] font-semibold">Forever eCommerce</span>, where fashion blends <strong className="text-[green]">creativity</strong> with <strong className="text-[#green]">confidence</strong>. Our collection is designed for those who dare to stand out, offering a mix of <strong className="text-[green]">bold trends</strong> and <strong className="text-[green]">classic elegance</strong>. Whether you're looking for <strong className="text-[green]">casual comfort</strong> or <strong className="text-[green]">statement pieces</strong>, we have something for every style. Crafted with <strong className="text-[green]">premium fabrics</strong> and <strong className="text-[green]">expert precision</strong>, our outfits redefine everyday fashion. Because style isn’t just about<strong className="text-[orange]"><br></br>"what you wear—it’s about how you</strong>  <strong className="text-[black]">own it".</strong> ✨
-</p>
+          <img src={assets.logo} alt="Forever" className="w-36 mb-6" />
 
+          <p className="text-gray-600 leading-relaxed max-w-md">
+            Forever is a modern fashion destination built for confidence,
+            individuality, and everyday elegance. Crafted with premium fabrics
+            and timeless design principles.
+          </p>
 
+          <p className="mt-5 text-sm text-gray-500 italic">
+            Designed to be worn. Built to be remembered.
+          </p>
         </div>
 
-        {/* Company Links */}
+        {/* NAVIGATION */}
         <div>
-          <p className="text-2xl font-semibold mb-5 text-green-500 tracking-wide uppercase">
-            ✦ Company ✦
-          </p>
-          <ul className="flex flex-col gap-3 text-gray-400">
-            {["🏠 Home", "📖 About Us", "🚚 Delivery", "🔒 Privacy Policy"].map((item, index) => (
-              <li key={index} className="group transition-all duration-300 cursor-pointer flex items-center gap-2">
-                <span className="group-hover:text-green-400">{item}</span>
-                <div className="w-0 group-hover:w-full h-[2px] bg-green-400 transition-all duration-300"></div>
-              </li>
-            ))}
-          </ul>
-        </div>
+          <h4 className="text-xs font-semibold tracking-widest text-gray-900 uppercase mb-6">
+            Navigation
+          </h4>
 
-        {/* Contact Details */}
-        <div>
-          <p className="text-2xl font-semibold mb-5 text-green-500 tracking-wide uppercase">
-             Get in Touch 
-          </p>
-          <ul className="flex flex-col gap-3 text-gray-400">
+          <ul className="space-y-4 text-sm">
             {[
-              { icon: "📞", text: "7639644749" },
-              { icon: "📧", text: "rebelprem858@gmail.com" }
-            ].map((item, index) => (
-              <li key={index} className="flex items-center gap-2 cursor-pointer group transition-all duration-300">
-                {item.icon} <span className="group-hover:text-green-400">{item.text}</span>
+              { name: "Home", to: "/" },
+              { name: "About", to: "/about" },
+              { name: "Collection", to: "/collection" },
+              { name: "Privacy Policy", to: "/privacy" },
+            ].map((item, i) => (
+              <li key={i}>
+                <Link
+                  to={item.to}
+                  className="group inline-flex items-center gap-2 text-gray-600 hover:text-emerald-600 transition"
+                >
+                  <span className="h-[6px] w-[6px] rounded-full bg-emerald-400 opacity-0 group-hover:opacity-100 transition" />
+                  {item.name}
+                </Link>
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* CONTACT + CARD */}
+        <div>
+          <h4 className="text-xs font-semibold tracking-widest text-gray-900 uppercase mb-6">
+            Contact
+          </h4>
+
+          <div className="space-y-3 text-sm text-gray-600">
+            <p>+91 63852 58142</p>
+            <p>sesuuraj@gmail.com</p>
+          </div>
+
+          {/* Glass Card */}
+          <div
+            className="mt-8 p-6 rounded-2xl 
+                       bg-white/70 backdrop-blur-xl
+                       border border-gray-200
+                       shadow-[0_18px_40px_rgba(16,185,129,0.25)]"
+          >
+            <p className="text-sm font-semibold text-gray-900">
+              7-Day Easy Returns
+            </p>
+            <p className="text-xs text-gray-500 mt-1">
+              Simple, transparent, hassle-free.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Bottom Section */}
-      <div className="relative mt-10">
-        <hr className="border-gray-600" />
-        <p className="py-5 text-sm text-center text-gray-500">
-          ⚡ Copyright © 2025 <span className="text-green-400">Forever.com</span> - All Rights Reserved.
+      {/* Bottom */}
+      <div className="border-t border-gray-200">
+        <p className="py-6 text-center text-xs text-gray-500">
+          © 2025 <span className="text-emerald-600 font-medium">Forever</span>.
+          All rights reserved.
         </p>
       </div>
     </footer>

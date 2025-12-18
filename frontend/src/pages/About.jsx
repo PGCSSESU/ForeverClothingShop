@@ -1,75 +1,203 @@
-import React from 'react';
-import Title from '../components/Title';
-import { assets } from '../assets/assets';
-import NewsletterBox from '../components/NewsletterBox';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
+import NewsletterBox from "../components/NewsletterBox";
+import { assets } from "../assets/assets";
+
+const stats = [
+  { value: "50K+", label: "Happy Customers" },
+  { value: "10K+", label: "Products Curated" },
+  { value: "99%", label: "Customer Satisfaction" },
+  { value: "24/7", label: "Support Availability" },
+];
+
+const features = [
+  {
+    title: "Premium Quality",
+    text: "Every product is carefully curated and quality-checked to meet luxury standards.",
+  },
+  {
+    title: "Seamless Shopping",
+    text: "Lightning-fast, intuitive, and secure shopping from discovery to checkout.",
+  },
+  {
+    title: "Customer First",
+    text: "Transparent service with real humans who genuinely care about your experience.",
+  },
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.15, duration: 0.8, ease: "easeOut" },
+  }),
+};
 
 const About = () => {
   return (
-    <motion.div
-      className='bg-gray-100 rounded-xl p-6 shadow-lg border-t'
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      <div className='text-2xl text-center pt-8'>
-        <Title text1={'ABOUT'} text2={'US'} />
-      </div>
+    <section className="relative overflow-hidden bg-white text-gray-900">
 
-      <div className='my-10 flex flex-col md:flex-row gap-16'>
-        <motion.img
-          className='w-full md:max-w-[450px] rounded-lg shadow-md'
-          src={assets.about_img}
-          alt="About Us"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-        />
-        <motion.div
-          className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600'
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+      {/* BACKGROUND BLOBS */}
+      <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-emerald-300/30 rounded-full blur-[120px]" />
+      <div className="absolute top-1/3 -right-32 w-[500px] h-[500px] bg-emerald-200/40 rounded-full blur-[120px]" />
+
+      {/* HERO */}
+      <div className="relative max-w-7xl mx-auto px-6 py-32 text-center">
+        <motion.p
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="uppercase tracking-[0.25em] text-sm text-emerald-600 mb-6"
         >
-          <p>
-            Forever was born out of a passion for innovation and a desire to revolutionize the way people shop online. Our journey began with a simple idea: to provide a platform where customers can easily discover, explore, and purchase a wide range of products from the comfort of their homes.
-          </p>
-          <p>
-            Since our inception, we've worked tirelessly to curate a diverse selection of high-quality products that cater to every taste and preference. From fashion and beauty to electronics and home essentials, we offer an extensive collection sourced from trusted brands and suppliers.
-          </p>
-          <b className='text-gray-800'>Our Mission</b>
-          <p>
-            Our mission at Forever is to empower customers with choice, convenience, and confidence. We're dedicated to providing a seamless shopping experience that exceeds expectations, from browsing and ordering to delivery and beyond.
-          </p>
-        </motion.div>
+          About Forever
+        </motion.p>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-5xl md:text-7xl font-extrabold leading-tight"
+        >
+          Crafted for
+          <span className="block bg-gradient-to-r from-emerald-500 to-emerald-700 bg-clip-text text-transparent">
+            Everyday Elegance
+          </span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="mt-8 max-w-2xl mx-auto text-gray-600 text-lg leading-relaxed"
+        >
+          Forever is where thoughtful design meets effortless fashion — curated
+          collections made to look timeless and feel exceptional.
+        </motion.p>
       </div>
 
-      <div className='text-xl py-4'>
-        <Title text1={'WHY'} text2={'CHOOSE US'} />
-      </div>
-
-      <div className='flex flex-col md:flex-row text-sm mb-20'>
-        {[
-          { title: 'Quality Assurance', text: 'We meticulously select and vet each product to ensure it meets our stringent quality standards.' },
-          { title: 'Convenience', text: 'With our user-friendly interface and hassle-free ordering process, shopping has never been easier.' },
-          { title: 'Exceptional Customer Service', text: 'Our team of dedicated professionals is here to assist you every step of the way, ensuring your satisfaction is our top priority.' }
-        ].map((item, index) => (
+      {/* STATS */}
+      <div className="relative max-w-7xl mx-auto px-6 pb-28 grid grid-cols-2 md:grid-cols-4 gap-6">
+        {stats.map((s, i) => (
           <motion.div
-            key={index}
-            className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5 bg-white rounded-lg shadow-md'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            whileHover={{ scale: 1.05 }}
+            key={i}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            custom={i}
+            viewport={{ once: true }}
+            whileHover={{ y: -8 }}
+            className="rounded-3xl p-8 text-center
+                       bg-white/70 backdrop-blur-xl
+                       border border-gray-200
+                       shadow-[0_20px_50px_rgba(16,185,129,0.15)]
+                       transition"
           >
-            <b>{item.title}</b>
-            <p className='text-gray-600'>{item.text}</p>
+            <div className="text-4xl font-extrabold text-emerald-600">
+              {s.value}
+            </div>
+            <div className="mt-2 text-sm text-gray-600">
+              {s.label}
+            </div>
           </motion.div>
         ))}
       </div>
 
-      <NewsletterBox />
-    </motion.div>
+      {/* STORY */}
+      <div className="relative max-w-7xl mx-auto px-6 py-32 grid lg:grid-cols-2 gap-20 items-center">
+        {/* IMAGE */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative"
+        >
+          <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-emerald-500/30 to-transparent blur-2xl" />
+          <img
+            src={assets.about_img}
+            alt="About Forever"
+            className="relative rounded-3xl shadow-[0_40px_90px_rgba(0,0,0,0.2)]"
+          />
+        </motion.div>
+
+        {/* TEXT */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl font-bold mb-8">
+            Who We Are
+          </h2>
+
+          <p className="text-gray-600 leading-relaxed mb-6">
+            Forever was built on a simple idea — fashion should feel premium,
+            effortless, and accessible. We curate pieces that elevate everyday
+            living.
+          </p>
+
+          <p className="text-gray-600 leading-relaxed mb-10">
+            Each product is chosen for quality, comfort, and longevity —
+            so you invest once and love it longer.
+          </p>
+
+          <div className="relative pl-6 border-l-4 border-emerald-600">
+            <h3 className="text-xl font-semibold mb-2">
+              Our Mission
+            </h3>
+            <p className="text-gray-600">
+              To redefine everyday fashion with integrity, craftsmanship,
+              and customer trust.
+            </p>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* WHY CHOOSE US */}
+      <div className="relative max-w-7xl mx-auto px-6 py-32">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Why Choose Forever
+          </h2>
+          <p className="mt-4 text-gray-600">
+            Minimal. Modern. Meaningful.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-10">
+          {features.map((f, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              custom={i}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.04 }}
+              className="rounded-3xl p-10
+                         bg-gradient-to-b from-white to-emerald-50
+                         border border-gray-200
+                         shadow-[0_25px_60px_rgba(16,185,129,0.2)]
+                         transition"
+            >
+              <h3 className="text-2xl font-semibold mb-4 text-emerald-600">
+                {f.title}
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                {f.text}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* NEWSLETTER */}
+      <div className="relative max-w-5xl mx-auto px-6 pb-32">
+        <NewsletterBox />
+      </div>
+
+    </section>
   );
 };
 
