@@ -1,0 +1,648 @@
+[
+  {
+  "_id": {
+    "$oid": "694395a451202dde5e8733c1"
+  },
+  "name": "Women Printed Kurta Set",
+  "description": "Elegant printed kurta set crafted with premium fabric, perfect for festive and casual wear.",
+  "price": 2499,
+  "image": [
+    "https://www.libas.in/cdn/shop/files/1_0c5dc94e-416a-41c6-b327-a0138c848c90.jpg?v=1755943297&width=360",
+    "https://www.libas.in/cdn/shop/files/2_10d4a65d-2125-44c6-8dcc-2348448e7e9f.jpg?v=1755943297&width=1080",
+    "https://www.libas.in/cdn/shop/files/3_de81c6c3-6741-4433-9c04-b4388f19d2b7.jpg?v=1755943297&width=1080",
+    "https://www.libas.in/cdn/shop/files/6_92c9ad00-0b5f-4514-bbe7-09cb414ebd75.jpg?v=1755943298&width=1080"
+  ],
+  "category": "Women",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+  ],
+  "bestseller": true,
+  "date": 1700000101
+},
+{
+  "_id": {
+    "$oid": "69439bb0ac05cadb1dcf412e"
+  },
+  "name": "Mustard Yoke Design Silk Blend Straight Kurta",
+  "description": "Elevate your ethnic wardrobe with this elegant mustard straight kurta, crafted from a soft silk-blend fabric that offers a subtle sheen and all-day comfort. Featuring a beautifully detailed yoke design, this kurta blends traditional charm with contemporary style. The straight silhouette ensures a flattering fit, making it perfect for festive occasions, office wear, or casual gatherings",
+  "price": 2199,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766038447/qivczbqhzci1pyrznrsn.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766038447/gerfq0swhglwtpkcf9mx.jpg",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766038446/lneowjkzl5d1us5h8fqp.jpg",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766038446/rcgfiwpmv8ixij5eyfx3.jpg"
+  ],
+  "category": "Women",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766038448877,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69439cdfd9e2145684d890c4"
+  },
+  "name": " Mustard Floral Printed Silk Blend Straight Kurta",
+  "description": "Make a graceful style statement with this mustard floral printed straight kurta. Designed in a luxurious silk-blend fabric, it features elegant floral motifs that add a refreshing touch of tradition. The straight-cut silhouette lends a clean and contemporary finish, making it a versatile choice for both festive celebrations and everyday ethnic wear",
+  "price": 4999,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766038749/hqkpyimefhriqtj7aegs.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766038749/nvwhryxvbnvzfogqsuap.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766038749/spfqn7m34sjgbaoghb4u.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766038749/tinmx1itaer9jotsqcoy.webp"
+  ],
+  "category": "Women",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766038751092,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69439e1ed9e2145684d890c6"
+  },
+  "name": "Metallic Foil Printed Slim Fit T-Shirt | White",
+  "description": "Make a statement with this white metallic foil printed slim fit T-shirt. Designed for a modern lifestyle, it features a striking metallic foil print that adds a hint of shine to your everyday look. The slim fit cut enhances your profile, while the comfortable fabric keeps you at ease from day to night. Style it with jeans or chinos for an effortlessly cool outfit",
+  "price": 799,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039068/c9ysf4twivzyp91iwckl.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039068/ztdom5kjun0otnnzhri2.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039069/tyiwhrvphufl9infsebk.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039068/gltphmvkyceftiv0rcst.webp"
+  ],
+  "category": "Men",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766039070191,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69439e9dd9e2145684d890c8"
+  },
+  "name": "Classic Herringbone Hooded Shirt | Maroon",
+  "description": "Step into effortless style with this maroon classic herringbone hooded shirt. Designed with a timeless herringbone pattern, it brings understated sophistication to your casual look. The hooded detail adds a contemporary flair, making it a versatile piece for transitional weather. Pair it with jeans or chinos for a smart yet relaxed outfit",
+  "price": 3197,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039195/uwu8sqzqlr9f0yppyoey.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039196/glzyiwrybbqaov2u2yyk.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039195/b82a51yzxn9dawj3qf1e.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039196/s9v6aah68fnzurkplyk6.webp"
+  ],
+  "category": "Men",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766039197375,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69439f3bd9e2145684d890ca"
+  },
+  "name": "Solid Heavy Fade Loose Fit Jeans | Black",
+  "description": "Make a bold style statement with these black loose fit jeans featuring a striking heavy fade finish. Crafted for all-day comfort, the relaxed fit delivers a modern streetwear appeal, while the faded detailing adds character and depth to the look. Versatile and on-trend, these jeans are ideal for casual wear and off-duty styling",
+  "price": 3754,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039354/cyc1ge3zxqafozshf2lx.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039353/kpgkhazb9gxcr3sb8iek.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039353/partbcgtj3q6gwhfrosz.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039353/vncy3uppikoo1nvi09n0.webp"
+  ],
+  "category": "Men",
+  "subCategory": "Bottomwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766039355249,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69439fbbd9e2145684d890cc"
+  },
+  "name": "Men’s straight fit cargo trousers | Grey",
+  "description": "Step into effortless utility style with these grey straight fit cargo trousers for men. Crafted with a clean, structured silhouette, they balance modern fashion with functional design. The classic cargo pockets enhance the utilitarian appeal, making them a versatile choice for casual wear and off-duty looks. Pair them with tees or shirts for a sharp yet relaxed outfit.",
+  "price": 2799,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039481/x10kd6qv62v5sinwh6bi.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039481/zpjhu4jvtkbj3prwplc3.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039481/jqb5qf9puvxfelipnba0.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766039481/djbhncegfnrobwpslnt0.webp"
+  ],
+  "category": "Men",
+  "subCategory": "Bottomwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766039483563,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943a1fe8c68fe43a5895ca5"
+  },
+  "name": "Cream Printed Cotton Night Suits",
+  "description": "Experience effortless comfort with these cream printed cotton night suits, designed for relaxed evenings and restful sleep. Made from lightweight cotton, they offer excellent breathability and a soothing feel. The elegant printed design adds a stylish touch, making these night suits a perfect blend of comfort and everyday luxury.",
+  "price": 899,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040059/ttyrgopwr8sueff2y0o6.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040060/z8ot4pcypt33lvsvrz9m.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040060/ilnxxef2ivpvsbn8sy5l.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040061/r6nqusdslodyp5llk95o.webp"
+  ],
+  "category": "Women",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766040062809,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943a2658c68fe43a5895ca7"
+  },
+  "name": "Green Printed Cotton Co-Ord Sets",
+  "description": "Step into easy elegance with these green printed cotton co-ord sets. Made from high-quality cotton, they ensure breathability and comfort while maintaining a polished appearance. The tasteful prints add character, and the coordinated silhouette delivers a chic, put-together look with minimal effort. Ideal for casual days, travel, or relaxed gatherings.",
+  "price": 1598,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040164/sxz7nsptdew4xomooiww.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040163/lcs6eteftpxvnbbfgzqt.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040164/kjowb5wylrq61mmzzf4b.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040164/sbeu4y16dfut6yc9h9a5.webp"
+  ],
+  "category": "Women",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766040165661,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943a2c88c68fe43a5895ca9"
+  },
+  "name": "Yellow Printed Cotton Night Suits",
+  "description": "Bring comfort and brightness to your nightwear collection with these yellow printed cotton night suits. Made from lightweight, breathable cotton, they offer a soothing feel and excellent comfort. The elegant printed pattern enhances the look, making these night suits perfect for peaceful sleep and cozy lounging.",
+  "price": 2187,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040262/vahsghmti1cyenubsgwu.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040261/wnziwdmdzh2nqywvz0qh.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040261/hwpu0x3zcunzb9iue6ex.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040261/zpadzm34u7hdau2ma78l.webp"
+  ],
+  "category": "Women",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766040264230,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943a3378c68fe43a5895cab"
+  },
+  "name": "Multi Printed Silk Blend Saree With Unstitched Blouse Piece",
+  "description": "Make a timeless statement with this multi printed silk blend saree, designed to bring together tradition and sophistication. The luxurious silk-blend fabric drapes beautifully, while the multi-color print adds a vibrant and elegant charm. Paired with an unstitched blouse piece, this saree gives you the freedom to create a personalized look for weddings, festivals, and festive celebrations.",
+  "price": 10999,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040373/f8osrdgpr6ntwltyr4gx.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040373/t7ste9zpkm2qpewxopqm.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040374/evdyt2ib60a0ighkjyry.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040373/ww3k7xizj6lkqrthguz4.webp"
+  ],
+  "category": "Women",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766040375216,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943a3de58dd9f052769e4c6"
+  },
+  "name": "Burgundy Woven Design Georgette Saree With Unstitched Blouse Piece",
+  "description": "Make a refined style statement with this burgundy woven design georgette saree. Designed in airy georgette fabric, it features elegant woven patterns that enhance its rich and graceful appeal. The fluid drape and deep burgundy hue create a timeless look, while the unstitched blouse piece offers styling flexibility for special occasions, weddings, and festive gatherings.",
+  "price": 12999,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040541/fnqraohionvzkdsnibtf.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040541/a6pfx2jncg4ztu81n4y5.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040541/azwbehb9bcgnezb9pvgg.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040541/dlevordykmh6deyq2raa.webp"
+  ],
+  "category": "Women",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766040542781,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943a47058dd9f052769e4cc"
+  },
+  "name": "Pink Petal Power Dress",
+  "description": "This Pink Petal Power Dress brings a burst of floral fun to your little one’s wardrobe.\r\n\r\n Designed for playful days and twirling moments, it combines comfort with charming style. Soft to wear and cheerful in color, it’s perfect for brightening up any adventure.\r\n\r\nLet your child bloom beautifully in this delightful dress!",
+  "price": 899,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040687/swsylaj97mwq1zmpqbja.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040687/rsvdgyx4aaw5d3yqxxli.webp"
+  ],
+  "category": "Kids",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766040688812,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943a4f558dd9f052769e4d0"
+  },
+  "name": "Blue Star Set",
+  "description": "Full birthday suit set for little munchkin to look like a prince. This set comes with a Bow tie.\r\nPerfect Party outfit for summers. lil boys will look absolutely handsome in this outfit.\r\nThe little boy is sure to steal all the attention with this super classy formal jacket in any special occasions.\r\nwhy should girls enjoy all the dressing? Dress up your lil hero in this amazing party outfit.\r\nProduct color may vary a bit due to lighting sources, weather or settings of your screens, monitors and smartphones. ",
+  "price": 1999,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040819/snfw4bdvazbxmjmavrrz.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040818/onojnrs5gwhlqfec97do.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040819/gv1lxqjvpi1pibw0ux2f.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040819/q1brown1djbydkpoyu7v.webp"
+  ],
+  "category": "Kids",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766040821700,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943a56558dd9f052769e4d4"
+  },
+  "name": "French Magic Boys Coord Set",
+  "description": "Let your little star shine with our French Magic Boys Coord Set.\r\nThis super cute set features a stylish summer wear with a trendy coat and shorts, perfect for an uber-cool look. Don't miss out on this magical outfit for your little one!\r\nwhy should girls enjoy all the dressing? Dress up your lil hero in this amazing party outfit.\r\nThis is funky yet party look set to enhance its look.",
+  "price": 3444,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040931/fldgyldl1ujkcwsqv1p0.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040932/ppdu0vwoy8ojxfk37xcq.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040931/qcqk3ddbimoiekdih07m.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766040931/lor0hxszm6kr5y65ejwc.webp"
+  ],
+  "category": "Kids",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766040933359,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943a66658dd9f052769e4d8"
+  },
+  "name": "Sky Stripes Shirt Pant With Bowtie",
+  "description": "Get ready for a stylish and playful day with our Sky Stripes Shirt Pant With Bowtie 3pc set!\r\n\r\nThis unique set features a trendy striped shirt and matching pants, complete with a charming bowtie for an added touch of fun.\r\n\r\nPerfect for any occasion, this set is sure to bring a smile to your face.\r\n\r\nWhy should girls enjoy all the dressing? Dress up your lil hero in this amazing party outfit. ",
+  "price": 4767,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041189/unkljpr5x8fonakysken.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041189/gwwzux8vk2rcx8u9nuv1.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041189/hcohftxi5f3linpahbpe.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041189/ggzf8zfccgxravkbgnm6.webp"
+  ],
+  "category": "Kids",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766041190955,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943a6e258dd9f052769e4dc"
+  },
+  "name": "Gulzaar Resham Embriodered Lehenga",
+  "description": "Step into celebration mode with the Gulzaar Resham Embroidered Lehenga! This vibrant lehenga dazzles with intricate resham embroidery that adds a splash of tradition and charm.\r\n\r\nPerfect for twirling at weddings or festive gatherings, it combines comfort with eye-catching style to keep you shining all day long. Let your playful spirit sparkle in this beautifully crafted ensemble!",
+  "price": 1234,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041312/rvvzxs0zg6g8m4sfl3gv.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041312/dxahz23ak6rekc5aqjkv.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041312/cowuuqp2eu89hxyjpc5n.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041312/ivdovrzt6n8agmwq8laf.webp"
+  ],
+  "category": "Kids",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766041314803,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943a7b058dd9f052769e4e6"
+  },
+  "name": "Forever Style Twist",
+  "description": "This stunning party Black stylish twist dress is designed to be your kid's go-to party or special occasion dress because it will keep her stylish and make her look like a true princess.\r\nThis dress comes with beautiful ruffles making it look absolutely stylish.\r\nThis dress will surely give your lil diva a fashionista feel and grab all the attention on her birthday party or special occasions.\r\nshe will be looking absolutely stunning in this dress that shows off her sense of style, sophistication, and flair for fun.",
+  "price": 2879,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041516/luvgjmwxrsmar1ip4qtj.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041516/asnivtxd9mztwd5qxpvg.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041516/ymsw50a8nilbflgsjbtb.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041516/uefmj2hwbe6r1xfzuguj.webp"
+  ],
+  "category": "Kids",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766041520875,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943a80a58dd9f052769e4ec"
+  },
+  "name": "Twist In pink Dress",
+  "description": "his super stylish party Pink twist dress is designed to be your kid's go-to party or special occasion dress because it will keep her stylish and make her look like a true princess.\r\nThis dress comes with beautiful ruffles making it look absolutely stylish. The fabric has a dual tone color, Gorgeous pink with a dual tone of black giving the dress a versatile look.",
+  "price": 3212,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041608/ub5wmdm1dxym9yylfmy1.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041608/vgkjb1ha7a98gis8zld8.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041608/kayd8wweu9akhg3tptqb.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766041609/riygt7s1nr85nyuvwvm8.webp"
+  ],
+  "category": "Kids",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "XXL",
+    "XL",
+    "L"
+  ],
+  "bestseller": true,
+  "date": 1766041610629,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943a9f558dd9f052769e4fd"
+  },
+  "name": "White Solid Cotton Palazzos",
+  "description": "White Solid Cotton Palazzos",
+  "price": 799,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042099/fkgyqhsmf1b9jnqszexz.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042100/okxeulbo2upgkthj3lqn.jpg",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042099/pfrb92u0ucbuihhmtrpj.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042099/xy5ve2usw0beo710u06s.webp"
+  ],
+  "category": "Women",
+  "subCategory": "Bottomwear",
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XXL",
+    "XL"
+  ],
+  "bestseller": true,
+  "date": 1766042101341,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943aa1b58dd9f052769e4ff"
+  },
+  "name": "White Solid Cotton Palazzos",
+  "description": "White Solid Cotton Palazzos",
+  "price": 876,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042135/qftpeugheubt4660muma.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042135/e9sglwo7qbzfyfftaxxp.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042135/ympuljsweah5xjczgxiw.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042136/fg49jycstegkwl4r58uv.webp"
+  ],
+  "category": "Women",
+  "subCategory": "Bottomwear",
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XXL",
+    "XL"
+  ],
+  "bestseller": true,
+  "date": 1766042139709,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943aab558dd9f052769e503"
+  },
+  "name": " Black Solid Rayon Blend Jegging",
+  "description": "\r\nBlack Solid Rayon Blend Jegging",
+  "price": 675,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042290/oo5afnqqh2ndjfgbhzuo.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042290/vyee9ydqemus0gzqo7ou.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042290/daa4cqrhppff2xlpqfxt.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042291/qpon9y35if6ueo2kmm66.webp"
+  ],
+  "category": "Women",
+  "subCategory": "Bottomwear",
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XXL",
+    "XL"
+  ],
+  "bestseller": true,
+  "date": 1766042293912,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943ab6758dd9f052769e507"
+  },
+  "name": "Pink Printed Cotton Straight Suit Set With Dupatta",
+  "description": "Pink Printed Cotton Straight Suit Set With Dupatta",
+  "price": 4353,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042449/owudlfbqvez72vawnsho.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042449/ltlrgkrvbkyb5xzcdgqo.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042457/ugd8ozbmt4dgfac6wisa.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042448/rubqiunc3vih3mxlokby.webp"
+  ],
+  "category": "Women",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XXL",
+    "XL"
+  ],
+  "bestseller": true,
+  "date": 1766042471553,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943ab7058dd9f052769e509"
+  },
+  "name": "Pink Printed Cotton Straight Suit Set With Dupatta",
+  "description": "Pink Printed Cotton Straight Suit Set With Dupatta",
+  "price": 4353,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042468/q8reoyba2jgyp40xizbz.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042465/xn6il8un4d0cnxqls5yu.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042469/yx3da2mptfy6xeyhtl9x.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042465/sw3pofube9n4efjarlcu.webp"
+  ],
+  "category": "Women",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XXL",
+    "XL"
+  ],
+  "bestseller": true,
+  "date": 1766042480408,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6943ac0158dd9f052769e50d"
+  },
+  "name": "Olive Woven Design Silk Blend Saree With Unstitched Blouse Piece",
+  "description": "Olive Woven Design Silk Blend Saree With Unstitched Blouse Piece",
+  "price": 15000,
+  "image": [
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042623/bsdguzctqzpsjvo6aljs.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042621/xxtshnhhajvbtzg0h2tj.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042621/bgxltmx1agexy6yrcjhk.webp",
+    "https://res.cloudinary.com/ddvda1w2p/image/upload/v1766042621/joxh4kekqettzezv4sro.webp"
+  ],
+  "category": "Women",
+  "subCategory": "Topwear",
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XXL",
+    "XL"
+  ],
+  "bestseller": true,
+  "date": 1766042625061,
+  "__v": 0
+}]
