@@ -56,41 +56,6 @@ The project is structured using reusable components, context-based state managem
 
 ---
 
-## 📸 Screenshots
-
-### Nav Bar
-![Home Page](backend/assets/nav.png)
-
-### Hero Carousel
-![Home Page](backend/assets/carousel.png)
-
-### 🆕 Latest Collection Section
-![Latest Collection](backend/assets/lattest.png)
-
-### 🆕 Top Men
-![Latest Collection](backend/assets/top men.png)
-
-### 🆕 Top Women1
-![Latest Collection](backend/assets/top woman.png)
-
-### 🆕 Top Women2
-![Latest Collection](backend/assets/top women.png)
-
-### 🆕 Top Kids
-![Latest Collection](backend/assets/top kid.png)
-
-
-### 🆕 Top Kids2
-![Latest Collection](backend/assets/top kids.png)
-
-### 🆕 Best Seller
-![Latest Collection](backend/assets/best seller.png)
-
-
-### 📄 Product Details Page
-![Product Details](backend/assets/p details.png)
-
-
 > 📌 Place all screenshots inside a `screenshots/` folder in the project root.
 
 ---
