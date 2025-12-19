@@ -68,30 +68,28 @@ The project is structured using reusable components, context-based state managem
 ![Latest Collection](backend/assets/lattest.png)
 
 ### 🆕 Top Men
-![Latest Collection](backend/assets/topmen.png)
+![Latest Collection](backend/assets/top men.png)
 
 ### 🆕 Top Women1
-![Latest Collection](backend/assets/topwoman.png)
+![Latest Collection](backend/assets/top woman.png)
 
 ### 🆕 Top Women2
-![Latest Collection](backend/assets/topwomen.png)
+![Latest Collection](backend/assets/top women.png)
 
 ### 🆕 Top Kids
-![Latest Collection](backend/assets/topkid.png)
+![Latest Collection](backend/assets/top kid.png)
 
 
 ### 🆕 Top Kids2
-![Latest Collection](backend/assets/topkids.png)
+![Latest Collection](backend/assets/top kids.png)
 
 ### 🆕 Best Seller
-![Latest Collection](backend/assets/bestseller.png)
+![Latest Collection](backend/assets/best seller.png)
 
 
 ### 📄 Product Details Page
-![Product Details](backend/assets/pdetails.png)
+![Product Details](backend/assets/p details.png)
 
-### 🛒 Cart Page
-![Cart Page](screenshots/cart.png)
 
 > 📌 Place all screenshots inside a `screenshots/` folder in the project root.
 
