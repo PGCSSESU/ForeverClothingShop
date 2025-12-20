@@ -37,13 +37,16 @@ const App = () => {
   return (
     <FavouriteProvider>
       <ReviewProvider>
+        {/* DO NOT TOUCH – desktop padding stays */}
         <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
           <ToastContainer />
           <Navbar />
           <SearchBar />
 
           <Routes>
+            {/* HOME CONTROLS ITS OWN LAYOUT */}
             <Route path="/" element={<Home />} />
+
             <Route path="/collection" element={<Collection />} />
             <Route path="/collection/men" element={<MenCollection />} />
             <Route path="/collection/women" element={<WomenCollection />} />

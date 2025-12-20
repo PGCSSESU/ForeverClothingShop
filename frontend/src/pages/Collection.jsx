@@ -266,18 +266,19 @@ const Collection = () => {
               </select>
             </div>
 
-            {/* BIG PRODUCT GRID */}
+            {/* PRODUCT GRID – FIXED FOR MOBILE */}
             <motion.div
               variants={stagger}
               initial="hidden"
               animate="show"
               className="
                 grid
-                grid-cols-1
+                grid-cols-3
                 sm:grid-cols-2
+                md:grid-cols-3
                 xl:grid-cols-3
-                gap-x-12
-                gap-y-20
+                gap-x-6
+                gap-y-16
               "
             >
               {filteredProducts.map((item) => (

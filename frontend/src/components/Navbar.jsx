@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart } from "lucide-react";
+import { Heart, X } from "lucide-react";
 import { assets } from "../assets/assets";
 import { ShopContext } from "../context/ShopContext";
 import { FavouriteContext } from "../context/FavaouriteContext";
@@ -35,13 +35,10 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* ---------------- CLICK OUTSIDE CLOSE ---------------- */
+  /* ---------------- CLICK OUTSIDE PROFILE ---------------- */
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (
-        profileRef.current &&
-        !profileRef.current.contains(e.target)
-      ) {
+      if (profileRef.current && !profileRef.current.contains(e.target)) {
         setProfileOpen(false);
       }
     };
@@ -57,6 +54,7 @@ const Navbar = () => {
     setToken("");
     setCartItems({});
     setProfileOpen(false);
+    setMobileOpen(false);
   };
 
   const navItems = [
@@ -68,21 +66,21 @@ const Navbar = () => {
 
   return (
     <>
-      {/* ================= DESKTOP NAVBAR ================= */}
+      {/* ================= HEADER ================= */}
       <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/80 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.08)]"
+            ? "bg-white/80 backdrop-blur-xl shadow-lg"
             : "bg-white"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
           {/* LOGO */}
-          <Link to="/" className="flex items-center gap-2">
-            <img src={assets.logo} className="w-36" alt="logo" />
+          <Link to="/" className="flex items-center">
+            <img src={assets.logo} className="w-32" alt="logo" />
           </Link>
 
-          {/* NAV LINKS */}
+          {/* DESKTOP NAV */}
           <nav className="hidden sm:flex items-center gap-10 text-sm font-medium">
             {navItems.map((item) => {
               const active = location.pathname === item.path;
@@ -90,7 +88,7 @@ const Navbar = () => {
                 <NavLink
                   key={item.name}
                   to={item.path}
-                  className="relative text-gray-700 hover:text-black transition"
+                  className="relative text-gray-700 hover:text-black transition-colors"
                 >
                   {item.name}
                   <motion.span
@@ -104,7 +102,7 @@ const Navbar = () => {
             })}
           </nav>
 
-          {/* RIGHT ACTIONS */}
+          {/* RIGHT ICONS */}
           <div className="flex items-center gap-6">
             {/* SEARCH */}
             <motion.img
@@ -114,22 +112,20 @@ const Navbar = () => {
                 navigate("/collection");
               }}
               src={assets.search_icon}
-              className="w-5 cursor-pointer"
+              className="w-5 cursor-pointer hidden sm:block"
               alt="search"
             />
 
             {/* FAVOURITES */}
-            <Link to="/favourites" className="relative">
-              <motion.div whileHover={{ scale: 1.1 }}>
-                <Heart
-                  size={20}
-                  className={`${
-                    favourites.length > 0
-                      ? "fill-emerald-500 text-emerald-500"
-                      : "text-gray-700"
-                  }`}
-                />
-              </motion.div>
+            <Link to="/favourites" className="relative hidden sm:block">
+              <Heart
+                size={20}
+                className={`${
+                  favourites.length > 0
+                    ? "fill-emerald-500 text-emerald-500"
+                    : "text-gray-700"
+                }`}
+              />
               {favourites.length > 0 && (
                 <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-emerald-600 text-white text-[10px] flex items-center justify-center">
                   {favourites.length}
@@ -140,7 +136,7 @@ const Navbar = () => {
             {/* PROFILE */}
             <div className="relative" ref={profileRef}>
               <motion.img
-                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={() =>
                   token ? setProfileOpen((p) => !p) : navigate("/login")
                 }
@@ -149,7 +145,7 @@ const Navbar = () => {
                 alt="profile"
               />
 
-              {/* DROPDOWN */}
+              {/* PROFILE DROPDOWN */}
               <AnimatePresence>
                 {token && profileOpen && (
                   <motion.div
@@ -170,7 +166,6 @@ const Navbar = () => {
                     >
                       Favourites
                     </p>
-
                     <p
                       onClick={() => {
                         navigate("/orders");
@@ -180,7 +175,6 @@ const Navbar = () => {
                     >
                       Orders
                     </p>
-
                     <p
                       onClick={logout}
                       className="px-5 py-2 text-sm text-gray-600 hover:text-black cursor-pointer"
@@ -192,22 +186,7 @@ const Navbar = () => {
               </AnimatePresence>
             </div>
 
-            {/* CART */}
-            <Link to="/cart" className="relative">
-              <motion.img
-                whileHover={{ scale: 1.1 }}
-                src={assets.cart_icon}
-                className="w-5"
-                alt="cart"
-              />
-              {getCartCount() > 0 && (
-                <span className="absolute -bottom-2 -right-2 w-5 h-5 rounded-full bg-black text-white text-[10px] flex items-center justify-center">
-                  {getCartCount()}
-                </span>
-              )}
-            </Link>
-
-            {/* MOBILE MENU */}
+            {/* MOBILE MENU ICON */}
             <img
               onClick={() => setMobileOpen(true)}
               src={assets.menu_icon}
@@ -217,6 +196,78 @@ const Navbar = () => {
           </div>
         </div>
       </header>
+
+      {/* ================= MOBILE MENU ================= */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            {/* BACKDROP */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileOpen(false)}
+              className="fixed inset-0 bg-black/40 z-40"
+            />
+
+            {/* SLIDE PANEL */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25 }}
+              className="fixed top-0 right-0 w-72 h-full bg-white z-50 shadow-2xl px-6 py-6"
+            >
+              {/* HEADER */}
+              <div className="flex items-center justify-between mb-8">
+                <img src={assets.logo} className="w-28" alt="logo" />
+                <X
+                  className="cursor-pointer"
+                  onClick={() => setMobileOpen(false)}
+                />
+              </div>
+
+              {/* MOBILE LINKS */}
+              <div className="flex flex-col gap-6 text-lg font-medium">
+                {navItems.map((item) => (
+                  <NavLink
+                    key={item.name}
+                    to={item.path}
+                    onClick={() => setMobileOpen(false)}
+                    className={({ isActive }) =>
+                      `transition-colors duration-200 ${
+                        isActive
+                          ? "text-emerald-600 font-semibold"
+                          : "text-gray-700 hover:text-emerald-500"
+                      }`
+                    }
+                  >
+                    {item.name}
+                  </NavLink>
+                ))}
+
+                <Link
+                  to="/favourites"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2 text-gray-700 hover:text-emerald-500 transition-colors"
+                >
+                  <Heart className="w-5 h-5" />
+                  Favourites ({favourites.length})
+                </Link>
+
+                {token && (
+                  <button
+                    onClick={logout}
+                    className="text-left text-red-600 mt-6 hover:text-red-700 transition-colors"
+                  >
+                    Logout
+                  </button>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 };
